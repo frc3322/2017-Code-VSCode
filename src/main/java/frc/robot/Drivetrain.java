@@ -1,11 +1,8 @@
 package frc.robot;
 
 import java.lang.Math;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
