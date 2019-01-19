@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystem.*;
 
 public class Robot extends TimedRobot {
-    static OI xbox;
+    public static OI xbox;
     public static Drivetrain drivetrain;
-    static Climber climber;
-    static Holder holder;
+    public static Climber climber;
+    public static Holder holder;
     public static AHRS navx;
     //static Auton auton;
     static Compressor compressor;

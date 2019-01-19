@@ -1,4 +1,4 @@
-package frc.robot;
+/*package frc.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -177,4 +177,4 @@ public class Auton {
                 break;
         }
     }
-}
+}*/
