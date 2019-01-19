@@ -2,6 +2,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import java.nio.charset.StandardCharsets;
 
@@ -30,10 +32,14 @@ public class OI {
             R_YAXIS = 3,
             R_XAXIS = 4;
 
+    private Button buttonA = new JoystickButton(joystick, ABUTTON);
+    private Button buttonB = new JoystickButton(joystick, BBUTTON);
+
     int buttonState, toggleState;
 
     public OI() {
         joystick = new Joystick(0);
+
     }
 
 	// Track button states for pressedOnce
