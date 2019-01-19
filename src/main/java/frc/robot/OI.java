@@ -2,15 +2,17 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.command.*;
+import edu.wpi.first.wpilibj.command.Command;
 
 import java.nio.charset.StandardCharsets;
 
 
 public class OI {
-    static Joystick joystick;
+    static Joystick joystick = new Joystick(0);
 
     public static final int
             // Buttons
@@ -40,8 +42,6 @@ public class OI {
     int buttonState, toggleState;
 
     public OI() {
-        joystick = new Joystick(0);
-
         buttonA.whenPressed(new Climb());
         buttonA.whenPressed(new StopClimber());
 
@@ -49,7 +49,6 @@ public class OI {
         buttonB.whenPressed(new StopClimber());
 
         rightBumper.toggleWhenPressed(new MoveHolder());
-
     }
 
 	// Track button states for pressedOnce
@@ -118,7 +117,7 @@ public class OI {
     }
 
     public static void LEDWrite(String data) {
-        byte[] writeData = data.getBytes(StandardCharsets.UTF_8);
-        Robot.LEDs.transaction(writeData, writeData.length, null, 0);
+        //byte[] writeData = data.getBytes(StandardCharsets.UTF_8);
+        //Robot.LEDs.transaction(writeData, writeData.length, null, 0);
     }
 }

@@ -58,7 +58,7 @@ public class Climber extends Subsystem{
     public void stop(){
         
         climbStatus = ClimbState.STOP;
-
+        
         climb_talon_1.set(0);
         climb_talon_2.set(0);
 

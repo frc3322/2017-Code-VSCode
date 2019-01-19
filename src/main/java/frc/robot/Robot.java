@@ -20,10 +20,11 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         // Subsystem init
-        xbox = new OI();
+
         drivetrain = new Drivetrain();
         holder = new Holder();
         climber = new Climber();
+        xbox = new OI();
         //auton = new Auton();
 
         // Component init

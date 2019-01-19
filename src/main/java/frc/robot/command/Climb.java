@@ -7,10 +7,10 @@ import static frc.robot.Robot.climber;
 
 public class Climb extends Command{
 
-    public Climb(){
+    public Climb() {
 
         requires(climber);
-
+        
     }
 
     @Override
