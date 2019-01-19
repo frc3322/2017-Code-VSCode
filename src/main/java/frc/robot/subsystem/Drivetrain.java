@@ -1,18 +1,22 @@
-package frc.robot;
-
-import java.lang.Math;
+package frc.robot.subsystem;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.command.DriveControl;
 
-public class Drivetrain {
+public class Drivetrain extends Subsystem {
+
     private RobotDrive drive;
     private DoubleSolenoid shifter;
     private WPI_TalonSRX drive_left_1, drive_left_2, drive_right_1, drive_right_2, indenturedServantL, indenturedServantR;
-    Encoder enc_left, enc_right;
+    public Encoder enc_left, enc_right;
 
     private double totalError = 0;
 
@@ -28,9 +32,16 @@ public class Drivetrain {
             maxTurnDelta = .05,
             maxThrottleDelta = .05;
 
+    
     private int sampleIndex;
     private double leftSamples[], rightSamples[];
     public static final double DIAMETER_WHEEL = 0.5;
+
+    public Drivetrain(){
+
+        this(6.75, 8.5, 3, 50);
+
+    }
 
     Drivetrain(double lowThreshold, double highThreshold, int numSamples, int cooldown) {
         this(lowThreshold, highThreshold, numSamples, cooldown, false, false);
@@ -81,6 +92,78 @@ public class Drivetrain {
         SmartDashboard.putNumber("high_gear", highThreshold);
         SmartDashboard.putNumber("num_samples", numSamples);
         SmartDashboard.putNumber("cooldown", cooldown);
+    }
+
+    public void drive(double throttle, double turn) {
+        drive.arcadeDrive(throttle, turn);
+    }
+
+    @Override
+    protected void initDefaultCommand() {
+        setDefaultCommand(new DriveControl());
+    }
+
+    public void driveAngle(double targetAngle, double speed) { // in degrees
+        double kp = .00353;
+        double ki = 0;
+        double kd = .2;
+
+        double angle = Robot.navx.getYaw();
+        double error = targetAngle - angle;
+
+        totalError += error;
+
+        double turn = (targetAngle - angle) * kp + totalError * ki - (kd * (error - previousError));
+
+        drive.arcadeDrive(speed, turn);
+        previousError = error;
+    }
+
+    public void driveClosedLoop(double throttle, double turn) {
+        double kp = .70;
+        double kd = .75;
+        double yawRate = Robot.navx.getRate();
+
+        if(Math.abs(turn) < .15){
+            turn =  0;
+        }
+        double error = (yawRate - (turn * 7));
+        turn = -turn;
+        double RM = (throttle + .4*turn) - ((error * kp) - kd * (error - previousError));
+        double LM = (throttle - .4*turn) + ((error * kp) - kd * (error - previousError));
+
+        if (turn == 0 && Math.abs(throttle) < .1) {
+            LM = 0;
+            RM = 0;
+        }
+
+        drive_left_1.set(LM);
+        drive_left_2.set(LM);
+        drive_right_1.set(-RM);
+        drive_right_2.set(-RM);
+        previousError = error;
+    }
+
+    public void driveClamped(double throttle, double turn) {
+        double deltaThrottle = throttle - previousThrottle;
+        double deltaTurn = turn - previousTurn;
+
+        // Limit change in throttle value
+        // if current change in throttle value exceeds max, clamp it
+        if (Math.abs(deltaThrottle) > maxThrottleDelta && (previousThrottle / deltaThrottle) > 0) {
+            throttle = previousThrottle + ((deltaThrottle < 0)? -maxThrottleDelta : maxThrottleDelta);
+        }
+
+        // Limit change in turn value
+        // if current change in turn value exceeds max, clamp it
+        if(Math.abs(deltaTurn) > maxTurnDelta && (previousTurn / deltaTurn) > 0){
+            turn = previousTurn + ((deltaTurn < 0)? -maxTurnDelta : maxTurnDelta);
+        }
+
+        drive(throttle, turn);
+
+        previousThrottle = throttle;
+        previousTurn = turn;
     }
 
     public void updateSpeed() {
@@ -175,70 +258,4 @@ public class Drivetrain {
         }
     }
 
-    public void drive(double throttle, double turn) {
-        drive.arcadeDrive(throttle, turn);
-    }
-
-    public void driveAngle(double targetAngle, double speed) { // in degrees
-        double kp = .00353;
-        double ki = 0;
-        double kd = .2;
-
-        double angle = Robot.navx.getYaw();
-        double error = targetAngle - angle;
-
-        totalError += error;
-
-        double turn = (targetAngle - angle) * kp + totalError * ki - (kd * (error - previousError));
-
-        drive.arcadeDrive(speed, turn);
-        previousError = error;
-    }
-
-    public void driveClosedLoop(double throttle, double turn) {
-        double kp = .70;
-        double kd = .75;
-        double yawRate = Robot.navx.getRate();
-
-        if(Math.abs(turn) < .15){
-            turn =  0;
-        }
-        double error = (yawRate - (turn * 7));
-        turn = -turn;
-        double RM = (throttle + .4*turn) - ((error * kp) - kd * (error - previousError));
-        double LM = (throttle - .4*turn) + ((error * kp) - kd * (error - previousError));
-
-        if (turn == 0 && Math.abs(throttle) < .1) {
-            LM = 0;
-            RM = 0;
-        }
-
-        drive_left_1.set(LM);
-        drive_left_2.set(LM);
-        drive_right_1.set(-RM);
-        drive_right_2.set(-RM);
-        previousError = error;
-    }
-
-    public void driveClamped(double throttle, double turn) {
-        double deltaThrottle = throttle - previousThrottle;
-        double deltaTurn = turn - previousTurn;
-
-        // Limit change in throttle value
-        // if current change in throttle value exceeds max, clamp it
-        if (Math.abs(deltaThrottle) > maxThrottleDelta && (previousThrottle / deltaThrottle) > 0) {
-            throttle = previousThrottle + ((deltaThrottle < 0)? -maxThrottleDelta : maxThrottleDelta);
-        }
-
-        // Limit change in turn value
-        // if current change in turn value exceeds max, clamp it
-        if(Math.abs(deltaTurn) > maxTurnDelta && (previousTurn / deltaTurn) > 0){
-            turn = previousTurn + ((deltaTurn < 0)? -maxTurnDelta : maxTurnDelta);
-        }
-
-        drive(throttle, turn);
-
-        previousThrottle = throttle;
-        previousTurn = turn;
-    }
 }
