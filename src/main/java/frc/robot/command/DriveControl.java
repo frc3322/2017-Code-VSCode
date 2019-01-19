@@ -1,9 +1,10 @@
 package frc.robot.command;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.RobotMap;
+import frc.robot.OI;
 
 import static frc.robot.Robot.drivetrain;
+import static frc.robot.Robot.xbox;;
 
 public class DriveControl extends Command {
 
@@ -14,12 +15,17 @@ public class DriveControl extends Command {
 
         requires(drivetrain);
 
-        SPEED_AXIS = RobotMap.L_YAXIS;
-        ROTATION_AXIS = RobotMap.R_XAXIS;
+        SPEED_AXIS = OI.L_YAXIS;
+        ROTATION_AXIS = OI.R_XAXIS;
 
     }
 
-    
+    @Override
+    protected void execute() {
+
+        drivetrain.driveClamped(xbox.getFineAxis(OI.L_YAXIS, 3), xbox.getFineAxis(OI.R_XAXIS, 3));
+
+    }
 
     @Override
     protected boolean isFinished() {
