@@ -2,15 +2,17 @@ package frc.robot;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystem.*;
 
 public class Robot extends TimedRobot {
     static OI xbox;
-    static Drivetrain drivetrain;
+    public static Drivetrain drivetrain;
     static Climber climber;
     static Holder holder;
-    static AHRS navx;
-    static Auton auton;
+    public static AHRS navx;
+    //static Auton auton;
     static Compressor compressor;
     static I2C LEDs = new I2C(I2C.Port.kOnboard, 4);
 
@@ -18,10 +20,10 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         // Subsystem init
         xbox = new OI();
-        drivetrain = new Drivetrain(6.75, 8.5, 3, 50);
+        drivetrain = new Drivetrain();
         holder = new Holder();
         climber = new Climber();
-        auton = new Auton();
+        //auton = new Auton();
 
         // Component init
         compressor = new Compressor(0);
@@ -64,13 +66,13 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledPeriodic() {
-        auton.init();
+        //auton.init();
 
         OI.LEDWrite("DisabledPeriodic");
     }
     @Override
     public void autonomousInit() {
-        auton.init();
+        //auton.init();
 
         SmartDashboard.putNumber("auton", 2);
         SmartDashboard.putBoolean("enabled", true);
@@ -79,7 +81,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousPeriodic() {
-        auton.run();
+        //auton.run();
 
         SmartDashboard.putNumber("auton", 1);
         OI.LEDWrite("AutonPeriodic");
@@ -87,7 +89,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopPeriodic() {
-        drivetrain.driveClamped(xbox.getFineAxis(OI.L_YAXIS, 3), xbox.getFineAxis(OI.R_XAXIS, 3));
+
+        Scheduler.getInstance().run();
+
+        /*drivetrain.driveClamped(xbox.getFineAxis(OI.L_YAXIS, 3), xbox.getFineAxis(OI.R_XAXIS, 3));
         drivetrain.autoShift();
 
         climber.climb(OI.ABUTTON, OI.LBUMPER);
@@ -124,6 +129,6 @@ public class Robot extends TimedRobot {
         }
 
         SmartDashboard.putNumber("teleop", 0);
-        SmartDashboard.putNumber("auton", 0);
+        SmartDashboard.putNumber("auton", 0);*/
     }
 }
