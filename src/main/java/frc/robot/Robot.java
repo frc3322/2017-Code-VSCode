@@ -3,6 +3,7 @@ package frc.robot;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystem.*;
 
@@ -126,9 +127,7 @@ public class Robot extends TimedRobot {
             OI.LEDWrite("HolderForward");
         } else {
             OI.LEDWrite("HolderBack");
-        }
+        }*/
 
-        SmartDashboard.putNumber("teleop", 0);
-        SmartDashboard.putNumber("auton", 0);*/
     }
 }

@@ -1,10 +1,14 @@
-package frc.robot;
+package frc.robot.subsystem;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.OI;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
 
-public class Holder {
+public class Holder extends Subsystem{
 	private DoubleSolenoid holder;
 	DigitalInput gearSensor;
 
@@ -30,4 +34,7 @@ public class Holder {
 
         SmartDashboard.putBoolean("holder", false);
     }
+
+    @Override
+    protected void initDefaultCommand() {}
 }

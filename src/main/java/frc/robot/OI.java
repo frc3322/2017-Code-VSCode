@@ -35,6 +35,7 @@ public class OI {
 
     private Button buttonA = new JoystickButton(joystick, ABUTTON);
     private Button buttonB = new JoystickButton(joystick, BBUTTON);
+    private Button rightBumper = new JoystickButton(joystick, RBUMPER);
 
     int buttonState, toggleState;
 
@@ -46,6 +47,8 @@ public class OI {
 
         buttonB.whenPressed(new ForceClimb());
         buttonB.whenPressed(new StopClimber());
+
+        rightBumper.toggleWhenPressed(new MoveHolder());
 
     }
 
