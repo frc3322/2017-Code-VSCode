@@ -23,7 +23,7 @@ public class DriveControl extends Command {
     @Override
     protected void execute() {
 
-        drivetrain.driveClamped(xbox.getFineAxis(OI.L_YAXIS, 3), xbox.getFineAxis(OI.R_XAXIS, 3));
+        drivetrain.driveClamped(xbox.getFineAxis(SPEED_AXIS, 3), xbox.getFineAxis(ROTATION_AXIS, 3));
 
     }
 

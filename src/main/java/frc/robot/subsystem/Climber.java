@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.command.StopClimber;
 
 public class Climber extends Subsystem{
     WPI_TalonSRX climb_talon_1, climb_talon_2;
@@ -80,6 +81,6 @@ public class Climber extends Subsystem{
 
     @Override
     protected void initDefaultCommand() {
-        
+        setDefaultCommand(new StopClimber());
     }
 }
