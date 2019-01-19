@@ -17,16 +17,12 @@ public class MoveHolder extends Command {
 
     @Override
     protected void initialize() {
-        if (!holder.isExtended()) {
-            holder.extend();
-        } else {
-            holder.retract();
-        }
+        holder.toggleExtension();
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
 }

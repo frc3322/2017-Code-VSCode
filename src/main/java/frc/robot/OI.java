@@ -46,7 +46,7 @@ public class OI {
 
         buttonB.whenPressed(new StopClimber());
 
-        rightBumper.toggleWhenPressed(new MoveHolder());
+        rightBumper.whenPressed(new MoveHolder());
     }
 
 	// Track button states for pressedOnce
