@@ -43,9 +43,7 @@ public class OI {
 
     public OI() {
         buttonA.whenPressed(new Climb());
-        buttonA.whenPressed(new StopClimber());
 
-        buttonB.whenPressed(new ForceClimb());
         buttonB.whenPressed(new StopClimber());
 
         rightBumper.toggleWhenPressed(new MoveHolder());

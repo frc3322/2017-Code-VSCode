@@ -9,7 +9,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class Holder extends Subsystem{
-	private DoubleSolenoid holder;
+    public DoubleSolenoid holder;
 	DigitalInput gearSensor;
 
 	boolean extended;
@@ -35,6 +35,9 @@ public class Holder extends Subsystem{
         SmartDashboard.putBoolean("holder", false);
     }
 
+    public boolean isExtended() {
+        return extended;
+    }
     @Override
     protected void initDefaultCommand() {}
 }

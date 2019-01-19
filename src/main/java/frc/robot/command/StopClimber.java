@@ -15,7 +15,7 @@ public class StopClimber extends Command {
 
     @Override
     protected void initialize() {
-        climber.climb();
+        climber.stop();
     }
 
     @Override
