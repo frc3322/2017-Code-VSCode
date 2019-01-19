@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.command.*;
 
 import java.nio.charset.StandardCharsets;
 
@@ -39,6 +40,12 @@ public class OI {
 
     public OI() {
         joystick = new Joystick(0);
+
+        buttonA.whenPressed(new Climb());
+        buttonA.whenPressed(new StopClimber());
+
+        buttonB.whenPressed(new ForceClimb());
+        buttonB.whenPressed(new StopClimber());
 
     }
 

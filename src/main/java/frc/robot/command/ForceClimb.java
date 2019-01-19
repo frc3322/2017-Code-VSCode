@@ -20,7 +20,7 @@ public class ForceClimb extends Command{
 
     @Override
     protected void execute() {
-        climber.climb();
+        climber.forceClimb();
     }
 
     @Override
