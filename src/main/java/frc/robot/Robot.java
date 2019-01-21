@@ -66,6 +66,10 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("vel_x", navx.getVelocityX());
         SmartDashboard.putNumber("vel_y", navx.getVelocityY());
         SmartDashboard.putNumber("vel_z", navx.getVelocityZ());
+        SmartDashboard.putNumber("Limelight: Offset X", limelight.getTx());
+        SmartDashboard.putNumber("Limelight: Offset Y", limelight.getTy());
+        SmartDashboard.putBoolean("Limelight: Detects Target", limelight.isTarget());
+        SmartDashboard.putNumber("Limelight: Area of Target", limelight.getTa());
     }
 
     @Override

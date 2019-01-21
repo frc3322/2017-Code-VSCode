@@ -19,7 +19,7 @@ import frc.robot.subsystem.LimeLight;
  */
 public class LimeAlign extends Command{
 
-    private double turnConstant = .1;
+    private double turnConstant = .025;
 
     public void LimeAlign() {
         requires(Robot.limelight);
@@ -28,7 +28,7 @@ public class LimeAlign extends Command{
 
     @Override
     protected void execute() {
-        Robot.drivetrain.driveClamped(OI.joystick.getRawAxis(1), LimeLight.getTx() * turnConstant);
+        Robot.drivetrain.driveClamped(0, LimeLight.getTx() * turnConstant);
     }
 
     @Override
