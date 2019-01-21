@@ -13,6 +13,7 @@ public class Robot extends TimedRobot {
     public static Climber climber;
     public static Holder holder;
     public static AHRS navx;
+    public static LimeLight limelight;
     //static Auton auton;
     static Compressor compressor;
     static I2C LEDs = new I2C(I2C.Port.kOnboard, 4);
@@ -25,6 +26,7 @@ public class Robot extends TimedRobot {
         holder = new Holder();
         climber = new Climber();
         xbox = new OI();
+        limelight = new LimeLight();
         //auton = new Auton();
 
         // Component init

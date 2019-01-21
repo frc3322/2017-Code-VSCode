@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 
 
 public class OI {
-    static Joystick joystick = new Joystick(0);
+    public static Joystick joystick = new Joystick(0);
 
     public static final int
             // Buttons
