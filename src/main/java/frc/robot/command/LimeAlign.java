@@ -32,6 +32,11 @@ public class LimeAlign extends Command{
     }
 
     @Override
+    protected void end() {
+        Robot.drivetrain.drive(0, 0);
+    }
+
+    @Override
     protected boolean isFinished() {
         return false;
     }
