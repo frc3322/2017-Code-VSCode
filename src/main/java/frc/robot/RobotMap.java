@@ -9,12 +9,12 @@ package frc.robot;
 public class RobotMap {
     public static final int
         // Talons
-        driveLeft_1 = 6,
-        driveLeft_2 = 7,
-        indenturedServantL = 8,
-        driveRight_1 = 3,
-        driveRight_2 = 4,
-        indenturedServantR = 5,
+        driveLeft_1 = 3,
+        driveLeft_2 = 2,
+        indenturedServantL = 1,
+        driveRight_1 = 6,
+        driveRight_2 = 5,
+        indenturedServantR = 4,
 
         climbTalon_1 = 1,
         climbTalon_2 = 2,
