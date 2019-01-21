@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystem.*;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Robot extends TimedRobot {
     public static OI xbox;
@@ -13,6 +14,7 @@ public class Robot extends TimedRobot {
     public static Climber climber;
     public static Holder holder;
     public static AHRS navx;
+    public static DigitalInput infrared = new DigitalInput(RobotMap.infrared);
     //static Auton auton;
     static Compressor compressor;
     static I2C LEDs = new I2C(I2C.Port.kOnboard, 4);
@@ -64,6 +66,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("vel_x", navx.getVelocityX());
         SmartDashboard.putNumber("vel_y", navx.getVelocityY());
         SmartDashboard.putNumber("vel_z", navx.getVelocityZ());
+        SmartDashboard.putBoolean("Infrared Value", infrared.get());
     }
 
     @Override
