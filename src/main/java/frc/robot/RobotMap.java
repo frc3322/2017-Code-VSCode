@@ -16,8 +16,8 @@ public class RobotMap {
         driveRight_2 = 5,
         indenturedServantR = 4,
 
-        climbTalon_1 = 1,
-        climbTalon_2 = 2,
+        climbTalon_1 = 8,
+        climbTalon_2 = 7,
 
         // Solenoids
         shifter_1 = 3,
