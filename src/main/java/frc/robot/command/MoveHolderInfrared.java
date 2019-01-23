@@ -17,8 +17,10 @@ public class MoveHolderInfrared extends Command {
 
     @Override
     protected void execute() {
+        Robot.drivetrain.drive(.7, 0);
         if(Robot.infrared.get()){
             holder.toggleExtension();
+            System.out.println("Shooter activated");
         }
     }
 

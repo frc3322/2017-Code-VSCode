@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.command.*;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 
 import java.nio.charset.StandardCharsets;
 
@@ -39,6 +40,7 @@ public class OI {
     private Button buttonB = new JoystickButton(joystick, BBUTTON);
     private Button rightBumper = new JoystickButton(joystick, RBUMPER);
     private Button leftBumper = new JoystickButton(joystick, LBUMPER);
+    private Button buttonY = new JoystickButton(joystick, YBUTTON);
 
     int buttonState, toggleState;
 
