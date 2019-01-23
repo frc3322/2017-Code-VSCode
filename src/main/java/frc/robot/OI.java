@@ -38,6 +38,7 @@ public class OI {
     private Button buttonA = new JoystickButton(joystick, ABUTTON);
     private Button buttonB = new JoystickButton(joystick, BBUTTON);
     private Button rightBumper = new JoystickButton(joystick, RBUMPER);
+    private Button leftBumper = new JoystickButton(joystick, LBUMPER);
 
     int buttonState, toggleState;
 
@@ -47,6 +48,8 @@ public class OI {
         buttonB.whenPressed(new StopClimber());
 
         rightBumper.whenPressed(new MoveHolder());
+
+        leftBumper.whileHeld(new MoveHolderInfrared());
     }
 
 	// Track button states for pressedOnce
