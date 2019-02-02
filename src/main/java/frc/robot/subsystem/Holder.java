@@ -17,23 +17,25 @@ public class Holder extends Subsystem{
 
 	public Holder() {
         SmartDashboard.putBoolean("holderExtended", extended);
-		holder = new DoubleSolenoid(RobotMap.gearHolder_1, RobotMap.gearHolder_2);
+		holder = new DoubleSolenoid(1, RobotMap.gearHolder_1, RobotMap.gearHolder_2);
 		gearSensor = new DigitalInput(RobotMap.gearSensor);
 	}
 
 	public void extend() {
-        extended = true;
+        extended = !extended;
         holder.set(DoubleSolenoid.Value.kForward);
         Robot.xbox.setToggled(OI.RBUMPER, true);
     }
 
     public void retract() {
-        extended = false;
+        extended = !extended;
         holder.set(DoubleSolenoid.Value.kReverse);
         Robot.xbox.setToggled(OI.RBUMPER, false);
     }
 
     public void toggleExtension() {
+        
+        SmartDashboard.putBoolean("holder extended", extended);
         if(isExtended()){
             retract();
         } else {

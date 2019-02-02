@@ -30,7 +30,7 @@ public class Robot extends TimedRobot {
         //auton = new Auton();
 
         // Component init
-        compressor = new Compressor(0);
+        compressor = new Compressor(1);
         navx = new AHRS(SerialPort.Port.kMXP);
 
         SmartDashboard.putNumber("auton", 1);
