@@ -71,8 +71,7 @@ public class Drivetrain extends Subsystem {
         //indenturedServantR.set(drive_right_1.getDeviceID());
         indenturedServantL.follow(drive_left_1);
         indenturedServantR.follow(drive_right_1);
-        shifter = new DoubleSolenoid(RobotMap.shifter_1, RobotMap.shifter_2);
-
+        shifter = new DoubleSolenoid(1, RobotMap.shifter_1, RobotMap.shifter_2);
         enc_left = new Encoder(RobotMap.encLeft_1, RobotMap.encLeft_2);
         enc_right = new Encoder(RobotMap.encRight_1, RobotMap.encRight_2);
 
@@ -118,6 +117,10 @@ public class Drivetrain extends Subsystem {
 
         drive.arcadeDrive(speed, turn);
         previousError = error;
+    }
+
+    public void update(){
+        SmartDashboard.putNumber("Shift State", shifter.getAll());
     }
 
     public void driveClosedLoop(double throttle, double turn) {

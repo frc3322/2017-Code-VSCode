@@ -11,7 +11,7 @@ public class Climber extends Subsystem{
     public ClimbState climbStatus;
 
     // value from 0.00 to 1.00
-    double climbRate = 0.0,//1.0,
+    double climbRate = 1.0,
 		    totalCurrent = 0,
             avgCurrent = 0;
     double[] current;

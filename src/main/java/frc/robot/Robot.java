@@ -58,6 +58,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotPeriodic() {
         drivetrain.updateSpeed();
+        drivetrain.update();
         SmartDashboard.putNumber("left_vel", drivetrain.wheelFloorSpeed(drivetrain.enc_left));
         SmartDashboard.putNumber("right_vel", drivetrain.wheelFloorSpeed(drivetrain.enc_right));
         SmartDashboard.putNumber("left_disp", drivetrain.getLeftDisp());
@@ -117,14 +118,15 @@ public class Robot extends TimedRobot {
         // Vibrate controller based on motor current and sensor state
         if (climber.climbStatus != Climber.ClimbState.STOP) {
             xbox.setVibrate(climber.avgCurrent * .02, climber.avgCurrent * .02);
-        } else if (!holder.gearSensor.get()) {
+        } else */
+        if (!Robot.holder.gearSensor.get()) {
             SmartDashboard.putBoolean("gear_sensor", true);
             xbox.setVibrate(0.5,0.5);
         } else {
             SmartDashboard.putBoolean("gear_sensor", false);
             xbox.setVibrate(0, 0);
         }
-
+        /*
         if (climber.climbStatus == Climber.ClimbState.CLIMB) {
             OI.LEDWrite("Climbing");
         } else if (holder.extended) {

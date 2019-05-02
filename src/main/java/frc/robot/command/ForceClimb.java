@@ -25,7 +25,8 @@ public class ForceClimb extends Command{
 
     @Override
     protected boolean isFinished() {
-        return climber.climbStatus == ClimbState.STOP;
+        //return climber.climbStatus == ClimbState.STOP;
+        return false;
     }
 
 }

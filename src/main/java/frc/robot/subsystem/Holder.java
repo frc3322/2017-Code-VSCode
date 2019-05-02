@@ -10,7 +10,7 @@ import frc.robot.RobotMap;
 
 public class Holder extends Subsystem{
     public DoubleSolenoid holder;
-	DigitalInput gearSensor;
+	public DigitalInput gearSensor;
 
     public boolean extended;
     

@@ -20,8 +20,8 @@ public class RobotMap {
         climbTalon_2 = 7,
 
         // Solenoids
-        shifter_1 = 3,
-        shifter_2 = 2,
+        shifter_1 = 4,
+        shifter_2 = 5,
 
         gearHolder_1 = 0,
         gearHolder_2 = 1,

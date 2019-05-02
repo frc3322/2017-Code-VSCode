@@ -22,9 +22,8 @@ public class DriveControl extends Command {
 
     @Override
     protected void execute() {
-
+        drivetrain.autoShift();
         drivetrain.driveClamped(xbox.getFineAxis(SPEED_AXIS, 3), xbox.getFineAxis(ROTATION_AXIS, 3));
-
     }
 
     @Override
